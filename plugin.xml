@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-medallia-digital-cordova" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>MedalliaDigital</name>
+    <js-module name="MedalliaDigitalSDKCordova" src="www/MedalliaDigitalSDKCordova.js">
+        <clobbers target="medalliaDigital"/>
+    </js-module>
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="MedalliaDigitalSDKCordova">
+                <param name="android-package"
+                       value="com.medallia.plugin.MedalliaDigitalSDKCordova"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/MedalliaDigitalSDKCordova.java" target-dir="src/com/medallia/plugin"/>
+        <framework src="src/android/MedalliaDigitalSDKCordova.gradle" custom="true" type="gradleReference"/>
+        <resource-file src="src/android/medallia-android-sdk.aar" target="libs/medallia-android-sdk.aar"/>
+    </platform>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <preference name="UseSwiftLanguageVersion" value="4"/>
+            <feature name="MedalliaDigitalSDKCordova">
+                <param name="ios-package" value="MedalliaDigitalSDKCordova"/>
+            </feature>
+        </config-file>
+        <source-file src="src/ios/MedalliaDigitalSDKCordova.m"/>
+        <source-file src="src/ios/MedalliaDigitalSDKCordova.h"/>
+        <framework src="src/ios/MedalliaDigitalSDK.xcframework" custom="true" embed="true"/>
+    </platform>
+</plugin>

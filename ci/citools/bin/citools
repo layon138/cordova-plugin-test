@@ -1,0 +1,7 @@
+SCRIPTPATH="$( cd "$(dirname "$(realpath "$0")")" ; pwd -P )"
+
+#TASK TRACKING
+${SCRIPTPATH}/../citools-tracking.sh ${SCRIPTPATH} ${1} > /dev/null 2>&1
+
+#TASK EXECUTION
+"${SCRIPTPATH}/../gradlew" -q -Dorg.gradle.internal.launcher.welcomeMessageEnabled=false --build-file "${SCRIPTPATH}/../gpt.gradle" "$@" --stacktrace

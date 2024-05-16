@@ -1,0 +1,23 @@
+{
+  "appName": "com.medallia.digital.mobilesdk.medallia-digital-cordova",
+  "npmArtifacts": [
+    {
+      "npmName": "medallia-digital-cordova"
+    }
+  ],
+  "release": {
+    "artifactsPromotion": {
+      "npm": {
+        "scriptType": "sh",
+        "scriptPath": "ci/cordova-promotion.sh"
+      }
+    },
+    "customStep": {
+      "scriptType": "sh",
+      "scriptPath": "ci/auto-bump.sh"
+    }
+  },
+  "applicationInfo": {
+        "team": "digitalsdk-readonly"
+  }
+}

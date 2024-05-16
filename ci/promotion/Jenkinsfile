@@ -1,0 +1,23 @@
+#!/usr/bin/env groovy
+
+import hudson.model.*
+
+node('general') {
+
+   stage('promote') {
+       sourceNpmPath = "dev-npm/${JobName}/-/${JobName}-${promoteVersion}.tgz"
+       targetNpmPath = "release-npm/${JobName}/-/${JobName}-${Version}"
+       sh "jfrog rt cp --flat=true ${sourceNpmPath} ${targetNpmPath}"
+   }
+
+   stage('checkout') {
+        checkout scm
+        sh "git branch -D ${env.BRANCH_NAME} || true && git checkout -b ${env.BRANCH_NAME}"
+        sh 'git clean -dfx'
+   }
+
+   stage('tag') {
+       sh "git tag -a ${Version} -m \"${JobName}-${Version}\""
+       sh "git push origin ${Version}"
+   }
+}

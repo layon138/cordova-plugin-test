@@ -1,0 +1,66 @@
+apply plugin: 'com.medallia.ci.pipelinetools-plugin'
+buildscript {
+	repositories {
+		maven {
+			url 'https://artifactory.eng.medallia.com/virtual-mvn'
+			credentials {
+				username = mArtifactoryUser
+				password = mArtifactoryPassword
+			}
+		}
+		mavenLocal()
+
+	}
+
+	dependencies {
+		classpath group: 'com.medallia.ci', name: 'gradle-pipelinetools-plugin', version: '3.11.5'
+	}
+}
+
+medalliaRelease {
+	//Keeping gitRepo for compatibility purpose. Probably not used anymore
+	gitRepo = file(System.env.CITOOLS_APP_GIT_REPO ?: System.getProperty("user.dir"))
+	masterBranchPattern = '^master$|^main$|^stable$|^TE-\\d+$|^[a-z][a-z0-9-]*@stable$|production'
+	releaseBranchPattern = '^(?:[a-z][a-z0-9-]*@v|v)(\\d+).(\\d+)$'
+	releaseTagPattern = '^(?:[a-z][a-z0-9-]*@v|v)(\\d+).(\\d+).(\\d+)$'
+}
+
+expressQA {
+	OAuthClientId = System.env.QASERVICE_OAUTH_CLIENT_ID
+	OAuthClientSecret = System.env.QASERVICE_OAUTH_CLIENT_SECRET
+	OAuthHost = System.env.QASERVICE_OAUTH_SERVICE_HOST ?: 'securitas.den.medallia.com'
+	qaServiceHost = System.env.QASERVICE_SERVICE_HOST ?: 'deployer.eng.den.medallia.com'
+	user = System.env.QASERVICE_DEPLOYER_USER ?: System.env.USER ?: "jenkins"
+	isAllTrustedConnection = true
+}
+
+deployExpressQA {
+	options = [:]
+	if (project.hasProperty('deploymentOptions')) {
+		project.property('deploymentOptions').toString().trim().tokenize(",").forEach() { deploymentOption ->
+			def deploymentOptionTokenized = deploymentOption.tokenize("=")
+			options.put(deploymentOptionTokenized[0].trim(), deploymentOptionTokenized[1].trim())
+		}
+	}
+}
+
+upgradeExpressQA {
+	options = [:]
+	if (project.hasProperty('deploymentOptions')) {
+		project.property('deploymentOptions').toString().tokenize(",").forEach() { deploymentOption ->
+			def deploymentOptionTokenized = deploymentOption.tokenize("=")
+			options.put(deploymentOptionTokenized[0], deploymentOptionTokenized[1])
+		}
+	}
+}
+
+if (project.tasks.findByName('deployReusableExpressQA')) {
+	deployReusableExpressQA {
+		if (project.hasProperty('deploymentOptions')) {
+			project.property('deploymentOptions').toString().trim().tokenize(",").forEach() { deploymentOption ->
+				def deploymentOptionTokenized = deploymentOption.tokenize("=")
+				options.put(deploymentOptionTokenized[0].trim(), deploymentOptionTokenized[1].trim())
+			}
+		}
+	}
+}
