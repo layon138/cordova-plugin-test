@@ -5,6 +5,8 @@
     <js-module name="MedalliaDigitalSDKCordova" src="www/MedalliaDigitalSDKCordova.js">
         <clobbers target="medalliaDigital"/>
     </js-module>
+    <!-- Keys per platform -->
+    <preference name ="ANDROID_KEY"/>
     <platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="MedalliaDigitalSDKCordova">
@@ -12,6 +14,7 @@
                        value="com.medallia.plugin.MedalliaDigitalSDKCordova"/>
             </feature>
         </config-file>
+        <preference name="ANDROID_KEY" value="$ANDROID_KEY"/>
         <source-file src="src/android/MedalliaDigitalSDKCordova.java" target-dir="src/com/medallia/plugin"/>
         <framework src="src/android/MedalliaDigitalSDKCordova.gradle" custom="true" type="gradleReference"/>
         <resource-file src="src/android/medallia-android-sdk.aar" target="libs/medallia-android-sdk.aar"/>
