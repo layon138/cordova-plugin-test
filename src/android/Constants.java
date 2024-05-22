@@ -1,3 +1,4 @@
+package com.medallia.plugin;
 
 public class Constants {
 
