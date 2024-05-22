@@ -156,7 +156,7 @@ public class MedalliaDigitalSDKCordova extends CordovaPlugin {
     }
 
     private void initSdk(final String token, final CallbackContext callbackContext) {
-        String androidKey = preferences.getString(Constants.ANDROID_KEY, null);
+        String androidKey = preferences.getString("ANDROID_KEY", null);
         MedalliaDigital.setActivity(cordova.getActivity());
         MedalliaDigital.setSdkFramework(MDSdkFrameworkType.CORDOVA);
 

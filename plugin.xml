@@ -13,8 +13,9 @@
                 <param name="android-package"
                        value="com.medallia.plugin.MedalliaDigitalSDKCordova"/>
             </feature>
+                <preference name="ANDROID_KEY" value="$ANDROID_KEY"/>
         </config-file>
-        <preference name="ANDROID_KEY" value="$ANDROID_KEY"/>
+    
             <source-file src="src/android/Constants.java" target-dir="src/com/medallia/plugin"/>
         <source-file src="src/android/MedalliaDigitalSDKCordova.java" target-dir="src/com/medallia/plugin"/>
         <framework src="src/android/MedalliaDigitalSDKCordova.gradle" custom="true" type="gradleReference"/>
