@@ -160,7 +160,7 @@ public class MedalliaDigitalSDKCordova extends CordovaPlugin {
         MedalliaDigital.setActivity(cordova.getActivity());
         MedalliaDigital.setSdkFramework(MDSdkFrameworkType.CORDOVA);
 
-        MedalliaDigital.init(cordova.getActivity().getApplication(), androidKey, new MDResultCallback() {
+        MedalliaDigital.init(cordova.getActivity().getApplication(), "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhcGlUb2tlblYyIiwiYXV0aFVybCI6Imh0dHBzOi8vbmVxdWkubWQtYXBpcy5tZWRhbGxpYS5jb20vbW9iaWxlU0RLL3YxL2FjY2Vzc1Rva2VuIiwiZW52aXJvbm1lbnQiOiJkaWdpdGFsLWNsb3VkLXdlc3QiLCJjcmVhdGVUaW1lIjoxNzE1MzU1MDQ4MDgzLCJkb21haW4iOiJodHRwczovL25lcXVpLm1kLWFwaXMubWVkYWxsaWEuY29tLyIsImFwaVRva2VuVjJWZXJzaW9uIjoyLCJwcm9wZXJ0eUlkIjo3NDA0OTJ9.F8imCO3Zjj14ak320AT0hDfnYi7hljyQnCiDUGV8xXnucV0Gzilcyvabdic1EisnQwnFkvXy9mKkqRG1AnEKjXFhpurOaYHwjAmAw2d3OcpRj4YuwUd6jyfF7rlj8J2hUGbLEaJ1-majOgpJzSTnx6B-gQyl2brh-kFgnh5sO1IVSCA-d_ukoyGLcbtxgGuPHdWiiLeANMWd2ufZrMhAaTAQev_citfWgzplis186SehfV1lzrrvXft6OTEGBDzS1tUdyI_knV0pAr-j-_hQO-OtQHlMM005q_FN6jEQLg4RTvvzvJTOZfYXOgB_HNOAylR9rmMkzL3ezlR0NByRNA", new MDResultCallback() {
             @Override
             public void onSuccess() {
                 callbackContext.success("");
