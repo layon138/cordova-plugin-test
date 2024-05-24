@@ -7,16 +7,16 @@
     </js-module>
     <!-- Keys per platform -->
     <preference name ="ANDROID_KEY"/>
+      <preference name ="IOS_KEY"/>
     <platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="MedalliaDigitalSDKCordova">
                 <param name="android-package"
                        value="com.medallia.plugin.MedalliaDigitalSDKCordova"/>
             </feature>
-                <preference name="ANDROID_KEY" value="$ANDROID_KEY"/>
+            <preference name="ANDROID_KEY" value="$ANDROID_KEY"/>
         </config-file>
     
-            <source-file src="src/android/Constants.java" target-dir="src/com/medallia/plugin"/>
         <source-file src="src/android/MedalliaDigitalSDKCordova.java" target-dir="src/com/medallia/plugin"/>
         <framework src="src/android/MedalliaDigitalSDKCordova.gradle" custom="true" type="gradleReference"/>
         <resource-file src="src/android/medallia-android-sdk.aar" target="libs/medallia-android-sdk.aar"/>
@@ -27,6 +27,7 @@
             <feature name="MedalliaDigitalSDKCordova">
                 <param name="ios-package" value="MedalliaDigitalSDKCordova"/>
             </feature>
+            <preference name="IOS_KEY" value="$IOS_KEY"/>
         </config-file>
         <source-file src="src/ios/MedalliaDigitalSDKCordova.m"/>
         <source-file src="src/ios/MedalliaDigitalSDKCordova.h"/>

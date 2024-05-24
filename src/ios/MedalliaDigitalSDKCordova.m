@@ -39,7 +39,7 @@ CDVInvokedUrlCommand *customInterceptDelegateCallbackCommand;
  - parameter failure: (MDExternalError) -> ()
  */
 - (void)sdkInit:(CDVInvokedUrlCommand*)command {
-    NSString* token = [command.arguments objectAtIndex:0];
+    NSString* token = [self.commandDelegate.settings objectForKey:@"ios_key"];
     if (token == nil) {
         token = @"";
     }
